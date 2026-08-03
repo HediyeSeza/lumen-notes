@@ -23,14 +23,14 @@ const labels = [
 
 const Labels = () => {
   return (
-    <section className="mt-8 px-5">
+    <section className="mt-4 px-5">
       {/* Header */}
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-1 flex items-center justify-between">
         <h3 className="text-xs font-bold tracking-widest text-slate-400">
           LABELS
         </h3>
 
-        <button className="text-xs font-light text-slate-500 transition hover:text-yellow-500">
+        <button className="text-xl font-light text-slate-500 transition hover:text-yellow-500">
           +
         </button>
       </div>

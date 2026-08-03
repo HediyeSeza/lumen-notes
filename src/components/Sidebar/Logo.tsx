@@ -2,7 +2,7 @@ import Logo from "../../assets/Star.png";
 
 const SidebarLogo = () => {
   return (
-    <div className="flex items-center gap-2 px-6 pt-6 pb-10">
+    <div className="flex items-center gap-2 px-2 pt-4 pb-6">
       <img
         src={Logo}
         alt="Lumen Logo"

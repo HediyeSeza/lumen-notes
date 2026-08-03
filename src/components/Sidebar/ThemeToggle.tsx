@@ -7,41 +7,73 @@ const ThemeSwitcher = () => {
   const [dark, setDark] = useState(false);
 
   return (
-    <div className="px-4 pb-4">
+    <div className="flex justify-center px-6 pb-6">
       <button
-        onClick={() => setDark(!dark)}
-        className="
-          flex
-          h-14
-          w-full
-          items-center
-          rounded-full
-          bg-yellow-50
-          p-1
-        "
-      >
+  className="
+    relative
+    flex
+    h-14
+    w-48
+    items-center
+    rounded-full
+    border
+    border-yellow-100
+    bg-[#FFF9E8]
+    p-1
+  "
+>
+        {/* Slider */}
         <div
           className={`
+            absolute
+            left-1
+            top-1
+
             flex
             h-12
             w-12
             items-center
             justify-center
+
             rounded-full
-            bg-white
-            shadow
+            bg-[#FFF3B5]
+            shadow-sm
+
             transition-all
             duration-300
 
-            ${dark ? "translate-x-12" : ""}
+            ${dark ? "translate-x-[104px]" : ""}
           `}
         >
           <img
             src={dark ? MoonIcon : SunIcon}
-            className="h-5 w-5"
+            alt=""
+            className="h-6 w-6"
           />
         </div>
-      </button>
+
+        {/* Sun */}
+<div className="flex w-1/2 justify-center">
+  <img
+    src={SunIcon}
+    className={`
+      h-6 w-6 transition-all duration-300 
+      ${dark ? "opacity-20" : "opacity-100"}
+    `}
+  />
+</div>
+
+{/* Moon */}
+<div className="flex w-1/2 justify-center">
+  <img
+    src={MoonIcon}
+    className={`
+      h-6 w-6 transition-all duration-300
+      ${dark ? "opacity-0" : "opacity-20"}
+    `}
+  />
+</div>
+                </button>
     </div>
   );
 };
