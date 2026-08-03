@@ -5,13 +5,16 @@ import TopBar from "../components/TopBar";
 const MainLayout = () => {
   return (
     <div className="flex min-h-screen bg-[#FFFDF5] dark:bg-slate-950">
-  <Sidebar />
+      <Sidebar />
 
-  <main className="flex-1">
-    <TopBar />
-    <Outlet />
-  </main>
-</div>
+      <main className="flex-1">
+        <TopBar />
+
+        <div className="px-6 py-8 lg:px-10">
+          <Outlet />
+        </div>
+      </main>
+    </div>
   );
 };
 
