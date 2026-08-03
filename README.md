@@ -1,75 +1,134 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# ✨ Lumen Notes
+Light up your ideas
 
-Currently, two official plugins are available:
+<img src="./public/Star.png" width="90" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Light up your ideas.
 
-## React Compiler
+A clean, modern and responsive note-taking application built with **React**, **TypeScript** and **Tailwind CSS**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📸 Preview
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+> Coming Soon...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ✨ Features
 
+- 📝 Create notes
+- ✏️ Edit notes
+- 🗑 Delete notes
+- 👀 View note details
+- 🔍 Search notes
+- 📑 Sort notes
+- 📱 Fully Responsive
+- 🌙 Beautiful Modern UI
+- ⚡ Fast & Lightweight
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Usage |
+|------------|-------|
+| React | UI |
+| TypeScript | Type Safety |
+| Tailwind CSS | Styling |
+| React Router | Routing |
+| Axios | API Requests |
+| React Query | Server State |
+| Vite | Build Tool |
+
+---
+
+## 📂 Project Structure
+
+```bash
+src
+│
+├── api
+├── assets
+├── components
+│   ├── layout
+│   ├── notes
+│   └── ui
+│
+├── hooks
+├── layouts
+├── pages
+├── routes
+├── services
+├── types
+└── utils
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Getting Started
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Clone the project
 
+```bash
+git clone https://github.com/HediyeSeza/lumen-notes.git
 ```
+
+Go to the project directory
+
+```bash
+cd lumen-notes
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 🎨 Design
+
+Lumen follows a minimal design system inspired by modern productivity apps.
+
+Main colors:
+
+- 🌕 Soft Yellow
+- 🤍 Warm White
+- 🌾 Cream
+- ⚫ Charcoal
+
+---
+
+## 📱 Responsive
+
+- Mobile
+- Tablet
+- Desktop
+
+---
+
+## 👩‍💻 Author
+
+**Hediye Seza**
+
+GitHub
+
+https://github.com/HediyeSeza
+
+---
+
+## ⭐ Support
+
+If you like this project, consider giving it a ⭐ on GitHub.
