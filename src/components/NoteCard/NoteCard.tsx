@@ -1,4 +1,4 @@
-import { EyeIcon, EditIcon, DeleteIcon, StarIcon,} from "../../assets/icons";
+import { EyeIcon, EditIcon, DeleteIcon, StarIcon,StarFilledIcon} from "../../assets/icons";
 import NoteBadge from "./NoteBadge";
 
 type NoteCardProps = {
@@ -6,6 +6,7 @@ type NoteCardProps = {
   description: string;
   category: "Personal" | "Work" | "Ideas" | "Study";
   time: string;
+  favorite: boolean;
 };
 
 const NoteCard = ({
@@ -13,6 +14,7 @@ const NoteCard = ({
   description,
   category,
   time,
+  favorite,
 }: NoteCardProps) => {
   return (
     <article
@@ -50,9 +52,17 @@ const NoteCard = ({
           "
         >
           <img
-            src={StarIcon}
-            alt="Favorite"
-            className="h-4 w-4 opacity-40 transition-opacity hover:opacity-100"
+             src={favorite ? StarFilledIcon : StarIcon}
+              alt="Favorite"
+              className={` h-4
+  w-4
+  transition-all
+  duration-200
+  ${
+    favorite
+      ? "opacity-100"
+      : "opacity-60 hover:opacity-100 hover:scale-110"
+}`}
           />
         </button>
       </div>
