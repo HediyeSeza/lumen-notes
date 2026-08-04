@@ -5,17 +5,13 @@ const NotesGrid = () => {
   return (
     <div
   className="
-    mt-8
-    grid
-    gap-4mt-8
-    gap-4
-    grid-cols-1
-    lg:grid-cols-2
-    2xl:grid-cols-3
-
-    md:grid-cols-2
-    xl:grid-cols-3
-  "
+  mt-8
+  grid
+  gap-4
+  grid-cols-1
+  md:grid-cols-2
+  xl:grid-cols-3
+"
 >
       {notes.map((note) => (
         <NoteCard
@@ -24,6 +20,7 @@ const NotesGrid = () => {
           description={note.description}
           category={note.category}
           time={note.time}
+          favorite={note.favorite}
         />
       ))}
     </div>

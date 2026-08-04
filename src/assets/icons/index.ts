@@ -13,3 +13,4 @@ export { default as PlusIcon } from "./plus.svg";
 export { default as StarIcon } from "./star.svg";
 export { default as NoteIcon} from "./note.svg"
 export { default as ChevronDown} from "./chevron-down.svg"
+export {default as StarFilledIcon}from "./StarFilled.svg"

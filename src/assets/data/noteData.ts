@@ -10,6 +10,7 @@ export type Note = {
   description: string;
   category: Category;
   time: string;
+  favorite: boolean;
 };
 
 export const notes: Note[] = [
@@ -19,6 +20,8 @@ export const notes: Note[] = [
     description: "...",
     category: "Personal",
     time: "Just now",
+    favorite: false,
+
   },
   {
     id: 2,
@@ -27,6 +30,7 @@ export const notes: Note[] = [
       "Plan the next milestones for Q3. Focus on improving...",
     category: "Work",
     time: "2 hours ago",
+    favorite: true
   },
   {
     id: 3,
@@ -35,5 +39,6 @@ export const notes: Note[] = [
       "An app that helps people track their daily habits An app that helps people track their daily habits An app that helps people track their daily habits An app that helps people track their daily habits...",
     category: "Ideas",
     time: "Yesterday",
+    favorite: false,
   },
 ];
