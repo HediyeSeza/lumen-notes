@@ -1,3 +1,5 @@
+import { PlusIcon } from "../../assets/icons";
+
 const labels = [
   {
     name: "Personal",
@@ -23,15 +25,19 @@ const labels = [
 
 const Labels = () => {
   return (
-    <section className="mt-4 px-5">
+    <section className="mt-5 px-5">
       {/* Header */}
-      <div className="mb-1 flex items-center justify-between">
+      <div className="grid grid-cols-[1fr_32px] items-center mb-3">
         <h3 className="text-xs font-bold tracking-widest text-slate-400">
           LABELS
         </h3>
 
-        <button className="text-xl font-light text-slate-500 transition hover:text-yellow-500">
-          +
+        <button className="flex justify-center">
+          <img
+            src={PlusIcon}
+            alt="Add Label"
+            className="h-3.5 w-3.5"
+          />
         </button>
       </div>
 
@@ -41,13 +47,13 @@ const Labels = () => {
           <button
             key={label.name}
             className="
-              flex
+              grid
               w-full
+              grid-cols-[1fr_32px]
               items-center
-              justify-between
               rounded-xl
-              px-3
-              py-1
+              px-2
+              py-2
               transition
               hover:bg-slate-50
               dark:hover:bg-slate-800
@@ -55,16 +61,16 @@ const Labels = () => {
           >
             <div className="flex items-center gap-2">
               <span
-                className={`h-2 w-2 rounded-full ${label.color}`}
+                className={`h-2.5 w-2.5 rounded-full ${label.color}`}
               />
 
-              <span className="font-medium text-slate-700 dark:text-slate-200">
+              <span className="text-[15px] font-medium text-slate-700 dark:text-slate-200">
                 {label.name}
               </span>
             </div>
 
-            <span className="text-s text-slate-500">
-              {label.count}
+            <span className="text-center text-sm text-slate-500">
+              
             </span>
           </button>
         ))}

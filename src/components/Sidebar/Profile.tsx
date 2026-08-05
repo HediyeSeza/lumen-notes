@@ -9,18 +9,19 @@ const user = {
 
 const Profile = () => {
   return (
-    <div className="mt-4 border-t border-yellow-200 p-5 dark:border-slate-800">
+    <div className="mt-3 border-t border-yellow-200 px-5 py-4 dark:border-slate-800">
       <button
         className="
           flex
           w-full
           items-center
           justify-between
-          rounded-2xl
-          transition
+          rounded-xl
+          p-2
+          transition-all
+          duration-200
           hover:bg-slate-50
           dark:hover:bg-slate-800
-          p-2
         "
       >
         <div className="flex items-center gap-3">
@@ -28,19 +29,33 @@ const Profile = () => {
             src={user.avatar}
             alt={user.name}
             className="
-              h-12
-              w-12
+              h-10
+              w-10
               rounded-full
               object-cover
             "
           />
 
-          <div className="text-left">
-            <h4 className="font-semibold text-slate-900 dark:text-white">
+          <div className="text-left leading-tight">
+            <h4
+              className="
+                text-[15px]
+                font-semibold
+                text-slate-900
+                dark:text-white
+              "
+            >
               {user.name}
             </h4>
 
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p
+              className="
+                mt-0.5
+                text-xs
+                text-slate-500
+                dark:text-slate-400
+              "
+            >
               {user.email}
             </p>
           </div>
@@ -49,7 +64,7 @@ const Profile = () => {
         <img
           src={ChevronDown}
           alt="More"
-          className="h-5 w-5"
+          className="h-4 w-4 opacity-70"
         />
       </button>
     </div>
