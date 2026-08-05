@@ -1,4 +1,11 @@
-import { EyeIcon, EditIcon, DeleteIcon, StarIcon,StarFilledIcon} from "../../assets/icons";
+import {
+  EyeIcon,
+  EditIcon,
+  DeleteIcon,
+  StarIcon,
+  StarFilledIcon,
+} from "../../assets/icons";
+
 import NoteBadge from "./NoteBadge";
 
 type NoteCardProps = {
@@ -7,6 +14,7 @@ type NoteCardProps = {
   category: "Personal" | "Work" | "Ideas" | "Study";
   time: string;
   favorite: boolean;
+  onEdit: () => void;
 };
 
 const NoteCard = ({
@@ -15,6 +23,7 @@ const NoteCard = ({
   category,
   time,
   favorite,
+  onEdit,
 }: NoteCardProps) => {
   return (
     <article
@@ -52,17 +61,19 @@ const NoteCard = ({
           "
         >
           <img
-             src={favorite ? StarFilledIcon : StarIcon}
-              alt="Favorite"
-              className={` h-4
-  w-4
-  transition-all
-  duration-200
-  ${
-    favorite
-      ? "opacity-100"
-      : "opacity-60 hover:opacity-100 hover:scale-110"
-}`}
+            src={favorite ? StarFilledIcon : StarIcon}
+            alt="Favorite"
+            className={`
+              h-4
+              w-4
+              transition-all
+              duration-200
+              ${
+                favorite
+                  ? "opacity-100"
+                  : "opacity-60 hover:opacity-100 hover:scale-110"
+              }
+            `}
           />
         </button>
       </div>
@@ -102,7 +113,10 @@ const NoteCard = ({
             />
           </button>
 
-          <button className="transition-opacity hover:opacity-70">
+          <button
+            onClick={onEdit}
+            className="transition-opacity hover:opacity-70"
+          >
             <img
               src={EditIcon}
               alt="Edit"
