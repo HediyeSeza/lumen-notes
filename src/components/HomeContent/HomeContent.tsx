@@ -16,13 +16,17 @@ const HomeContent = ({
   return (
     <>
       <TopBar
-  fetchNotes={fetchNotes}
-  notesCount={notes.length}/>
+        fetchNotes={fetchNotes}
+        notesCount={notes.length}
+      />
 
       <div className="px-6 py-8 lg:px-10">
         <SearchSection />
 
-        <NotesGrid notes={notes} />
+        <NotesGrid
+          notes={notes}
+          fetchNotes={fetchNotes}
+        />
       </div>
     </>
   );
