@@ -26,12 +26,18 @@ const HomeContent = ({
     useState<SortOption>("newest");
 
   const filteredAndSortedNotes = useMemo(() => {
-    const keyword = searchTerm.toLowerCase().trim();
+    const keyword = searchTerm
+      .toLowerCase()
+      .trim();
 
     let result = notes.filter(
       (note) =>
-        note.title.toLowerCase().includes(keyword) ||
-        note.content.toLowerCase().includes(keyword)
+        note.title
+          .toLowerCase()
+          .includes(keyword) ||
+        note.content
+          .toLowerCase()
+          .includes(keyword)
     );
 
     switch (sortBy) {
@@ -85,6 +91,7 @@ const HomeContent = ({
 
         <NotesGrid
           notes={filteredAndSortedNotes}
+          isSearching={searchTerm.trim().length > 0}
           fetchNotes={fetchNotes}
           showToast={showToast}
         />

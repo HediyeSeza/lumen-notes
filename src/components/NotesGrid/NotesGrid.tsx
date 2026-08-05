@@ -3,11 +3,13 @@ import { useState } from "react";
 import NoteCard from "../NoteCard/NoteCard";
 import EditNoteModal from "../EditNote/EditNoteModal";
 import DeleteNoteModal from "../DeleteNote/DeleteNoteModal";
+import EmptyState from "../EmptyState";
 
 import type { Note } from "../../types/note";
 
 type NotesGridProps = {
   notes: Note[];
+  isSearching: boolean;
   fetchNotes: () => Promise<void>;
   showToast: (
     message: string,
@@ -17,6 +19,7 @@ type NotesGridProps = {
 
 const NotesGrid = ({
   notes,
+  isSearching,
   fetchNotes,
   showToast,
 }: NotesGridProps) => {
@@ -50,6 +53,24 @@ const NotesGrid = ({
     setSelectedNote(null);
     setIsDeleteOpen(false);
   };
+
+  // Empty State
+  if (notes.length === 0) {
+    return (
+      <EmptyState
+        title={
+          isSearching
+            ? "No notes found"
+            : "No notes yet"
+        }
+        description={
+          isSearching
+            ? "Try searching with another keyword."
+            : "Create your first note to start organizing your ideas."
+        }
+      />
+    );
+  }
 
   return (
     <>
