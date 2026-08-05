@@ -9,6 +9,10 @@ type DeleteNoteModalProps = {
   onClose: () => void;
   note: Note;
   fetchNotes: () => Promise<void>;
+  showToast: (
+    message: string,
+    type?: "success" | "error" | "warning" | "info"
+  ) => void;
 };
 
 const DeleteNoteModal = ({
@@ -16,6 +20,7 @@ const DeleteNoteModal = ({
   onClose,
   note,
   fetchNotes,
+  showToast,
 }: DeleteNoteModalProps) => {
   const handleDelete = async () => {
     try {
@@ -23,9 +28,19 @@ const DeleteNoteModal = ({
 
       await fetchNotes();
 
+      showToast(
+        "Note deleted successfully",
+        "success"
+      );
+
       onClose();
     } catch (error) {
       console.error("Failed to delete note:", error);
+
+      showToast(
+        "Failed to delete note",
+        "error"
+      );
     }
   };
 

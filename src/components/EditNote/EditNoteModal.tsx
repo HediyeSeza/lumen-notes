@@ -12,6 +12,10 @@ type EditNoteModalProps = {
   onClose: () => void;
   note: Note;
   fetchNotes: () => Promise<void>;
+  showToast: (
+    message: string,
+    type?: "success" | "error" | "warning" | "info"
+  ) => void;
 };
 
 const EditNoteModal = ({
@@ -19,6 +23,7 @@ const EditNoteModal = ({
   onClose,
   note,
   fetchNotes,
+  showToast,
 }: EditNoteModalProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -53,9 +58,19 @@ const EditNoteModal = ({
 
       await fetchNotes();
 
+      showToast(
+        "Note updated successfully",
+        "success"
+      );
+
       handleClose();
     } catch (error) {
       console.error("Failed to update note:", error);
+
+      showToast(
+        "Failed to update note",
+        "error"
+      );
     }
   };
 

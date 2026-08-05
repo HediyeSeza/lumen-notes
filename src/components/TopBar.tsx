@@ -7,11 +7,17 @@ import CreateNoteModal from "./CreateNote/CreateNoteModal";
 
 type TopBarProps = {
   fetchNotes: () => Promise<void>;
+  notesCount: number;
+  showToast: (
+    message: string,
+    type?: "success" | "error" | "warning" | "info"
+  ) => void;
 };
 
 const TopBar = ({
   fetchNotes,
   notesCount,
+  showToast,
 }: TopBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -129,6 +135,7 @@ const TopBar = ({
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         fetchNotes={fetchNotes}
+        showToast={showToast}
       />
     </>
   );
