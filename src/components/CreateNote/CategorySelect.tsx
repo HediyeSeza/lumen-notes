@@ -1,4 +1,4 @@
-import ChevronDownIcon from "../../assets/icons/chevron-down.svg";
+import { ChevronDownIcon } from "../../assets/icons";
 
 type CategorySelectProps = {
   value: string;

@@ -1,7 +1,7 @@
 import {
   EyeIcon,
   EditIcon,
-  DeleteIcon,
+  TrashIcon,
   StarIcon,
   StarFilledIcon,
 } from "../../assets/icons";
@@ -131,7 +131,7 @@ const NoteCard = ({
             className="transition-opacity hover:opacity-70"
           >
             <img
-              src={DeleteIcon}
+              src={TrashIcon}
               alt="Delete"
               className="h-5 w-5"
             />

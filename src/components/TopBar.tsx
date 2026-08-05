@@ -1,7 +1,9 @@
 import { useState } from "react";
 
-import BellIcon from "../assets/icons/bell.svg";
-import PlusIcon from "../assets/icons/plus.svg";
+import {
+  BellIcon,
+  PlusIcon,
+} from "../assets/icons";
 
 import CreateNoteModal from "./CreateNote/CreateNoteModal";
 
