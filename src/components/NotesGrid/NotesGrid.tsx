@@ -9,11 +9,16 @@ import type { Note } from "../../types/note";
 type NotesGridProps = {
   notes: Note[];
   fetchNotes: () => Promise<void>;
+  showToast: (
+    message: string,
+    type?: "success" | "error" | "warning" | "info"
+  ) => void;
 };
 
 const NotesGrid = ({
   notes,
   fetchNotes,
+  showToast,
 }: NotesGridProps) => {
   // Edit
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -80,6 +85,7 @@ const NotesGrid = ({
             onClose={handleCloseEdit}
             note={selectedNote}
             fetchNotes={fetchNotes}
+            showToast={showToast}
           />
 
           <DeleteNoteModal
@@ -87,6 +93,7 @@ const NotesGrid = ({
             onClose={handleCloseDelete}
             note={selectedNote}
             fetchNotes={fetchNotes}
+            showToast={showToast}
           />
         </>
       )}

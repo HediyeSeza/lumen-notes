@@ -4,9 +4,20 @@ import { getNotes } from "../api/notes";
 import type { Note } from "../types/note";
 
 import HomeContent from "../components/HomeContent/HomeContent";
+import Toast from "../components/Toast/Toast";
 
 const Home = () => {
   const [notes, setNotes] = useState<Note[]>([]);
+
+  const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "success" as
+      | "success"
+      | "error"
+      | "warning"
+      | "info",
+  });
 
   const fetchNotes = async () => {
     try {
@@ -17,15 +28,46 @@ const Home = () => {
     }
   };
 
+  const showToast = (
+    message: string,
+    type:
+      | "success"
+      | "error"
+      | "warning"
+      | "info" = "success"
+  ) => {
+    setToast({
+      show: true,
+      message,
+      type,
+    });
+
+    setTimeout(() => {
+      setToast((prev) => ({
+        ...prev,
+        show: false,
+      }));
+    }, 2500);
+  };
+
   useEffect(() => {
     fetchNotes();
   }, []);
 
   return (
-    <HomeContent
-      notes={notes}
-      fetchNotes={fetchNotes}
-    />
+    <>
+      <HomeContent
+        notes={notes}
+        fetchNotes={fetchNotes}
+        showToast={showToast}
+      />
+
+      <Toast
+        show={toast.show}
+        message={toast.message}
+        type={toast.type}
+      />
+    </>
   );
 };
 

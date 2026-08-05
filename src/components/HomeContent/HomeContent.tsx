@@ -7,17 +7,23 @@ import type { Note } from "../../types/note";
 type HomeContentProps = {
   notes: Note[];
   fetchNotes: () => Promise<void>;
+  showToast: (
+    message: string,
+    type?: "success" | "error" | "warning" | "info"
+  ) => void;
 };
 
 const HomeContent = ({
   notes,
   fetchNotes,
+  showToast,
 }: HomeContentProps) => {
   return (
     <>
       <TopBar
         fetchNotes={fetchNotes}
         notesCount={notes.length}
+        showToast={showToast}
       />
 
       <div className="px-6 py-8 lg:px-10">
@@ -26,6 +32,7 @@ const HomeContent = ({
         <NotesGrid
           notes={notes}
           fetchNotes={fetchNotes}
+          showToast={showToast}
         />
       </div>
     </>

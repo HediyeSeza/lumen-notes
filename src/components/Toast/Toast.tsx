@@ -36,26 +36,30 @@ const Toast = ({
 
   return (
     <div
-      className={`
-        fixed
-        top-6
-        right-6
-        z-[999]
-        transition-all
-        duration-300
-        ease-out
+  className={`
+    fixed
+    top-6
+    left-1/2
+    -translate-x-1/2
 
-        ${
-          show
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-4 opacity-0 pointer-events-none"
-        }
-      `}
-    >
+    z-[999]
+
+    transition-all
+    duration-300
+    ease-out
+
+    ${
+      show
+        ? "translate-y-0 opacity-100"
+        : "-translate-y-4 opacity-0 pointer-events-none"
+    }
+  `}
+>
       <div
         className={`
           flex
-          min-w-[320px]
+          min-w-[300px]
+          max-w-md
           items-center
           gap-4
 

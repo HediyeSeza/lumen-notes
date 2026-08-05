@@ -9,12 +9,17 @@ type CreateNoteModalProps = {
   isOpen: boolean;
   onClose: () => void;
   fetchNotes: () => Promise<void>;
+  showToast: (
+    message: string,
+    type?: "success" | "error" | "warning" | "info"
+  ) => void;
 };
 
 const CreateNoteModal = ({
   isOpen,
   onClose,
   fetchNotes,
+  showToast,
 }: CreateNoteModalProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -31,23 +36,31 @@ const CreateNoteModal = ({
     onClose();
   };
 
- const handleCreate = async () => {
-  if (title.trim().length < 3) return;
+  const handleCreate = async () => {
+    if (title.trim().length < 3) return;
 
-  if (content.trim().length < 10) return;
+    if (content.trim().length < 10) return;
 
-  try {
-    await createNote(title, content);
+    try {
+      await createNote(title, content);
 
-    // دوباره لیست نوت‌ها را دریافت کن
-    await fetchNotes();
+      await fetchNotes();
 
-    // فرم را ریست کن و مودال را ببند
-    handleClose();
-  } catch (error) {
-    console.error("Failed to create note:", error);
-  }
-};
+      showToast(
+        "Note created successfully",
+        "success"
+      );
+
+      handleClose();
+    } catch (error) {
+      console.error("Failed to create note:", error);
+
+      showToast(
+        "Failed to create note",
+        "error"
+      );
+    }
+  };
 
   return (
     <Modal
