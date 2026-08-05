@@ -1,4 +1,4 @@
-import { ChevronDown } from "../../assets/icons";
+import { ChevronDownIcon } from "../../assets/icons";
 
 const SortDropdown = () => {
   return (
@@ -34,7 +34,7 @@ const SortDropdown = () => {
       </select>
 
       <img
-        src={ChevronDown}
+      src={ChevronDownIcon}
         alt="Chevron Down"
         className="
           pointer-events-none

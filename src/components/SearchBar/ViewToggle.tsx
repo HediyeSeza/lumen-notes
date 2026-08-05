@@ -1,5 +1,7 @@
-import GridIcon from "../../assets/icons/grid.svg";
-import MenuIcon from "../../assets/icons/menu.svg";
+import {
+  GridIcon,
+  MenuIcon,
+} from "../../assets/icons";
 
 const ViewToggle = () => {
   return (

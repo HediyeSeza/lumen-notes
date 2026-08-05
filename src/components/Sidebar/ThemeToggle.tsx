@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 
-import SunIcon from "../../assets/icons/sun.svg";
-import MoonIcon from "../../assets/icons/moon.svg";
+import {
+  SunIcon,
+  MoonIcon,
+  ActiveSunFilledIcon,
+ ActiveMoonFilledIcon,
+} from "../../assets/icons";
 
 const ThemeSwitcher = () => {
   const [dark, setDark] = useState(() => {
@@ -94,7 +98,11 @@ const ThemeSwitcher = () => {
             "
           >
             <img
-              src={dark ? MoonIcon : SunIcon}
+              src={
+                dark
+                  ? ActiveMoonFilledIcon
+                  : ActiveSunFilledIcon
+              }
               alt="Theme"
               className="h-5 w-5"
             />

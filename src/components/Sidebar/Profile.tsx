@@ -1,4 +1,4 @@
-import ChevronDown from "../../assets/icons/chevron-down.svg";
+import { ChevronDownIcon } from "../../assets/icons";
 import Avatar from "../../assets/1.png";
 
 const user = {
@@ -62,7 +62,7 @@ const Profile = () => {
         </div>
 
         <img
-          src={ChevronDown}
+          src={ChevronDownIcon}
           alt="More"
           className="h-4 w-4 opacity-70"
         />
