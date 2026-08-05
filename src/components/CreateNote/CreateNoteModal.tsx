@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { createNote } from "../../api/notes";
+
 import Modal from "../Modal/Modal";
 import CategorySelect from "./CategorySelect";
 
@@ -13,12 +15,12 @@ const CreateNoteModal = ({
   onClose,
 }: CreateNoteModalProps) => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [content, setContent] = useState("");
   const [category, setCategory] = useState("Personal");
 
   const resetForm = () => {
     setTitle("");
-    setDescription("");
+    setContent("");
     setCategory("Personal");
   };
 
@@ -27,16 +29,19 @@ const CreateNoteModal = ({
     onClose();
   };
 
-  const handleCreate = () => {
-    if (!title.trim()) return;
-    console.log({
-      title,
-      description,
-      category,
-    });
+  const handleCreate = async () => {
+    if (title.trim().length < 3) return;
 
-    resetForm();
-    onClose();
+    if (content.trim().length < 10) return;
+
+    try {
+      await createNote(title, content);
+
+      resetForm();
+      onClose();
+    } catch (error) {
+      console.error("Failed to create note:", error);
+    }
   };
 
   return (
@@ -66,65 +71,50 @@ const CreateNoteModal = ({
           className="
             w-full
             rounded-xl
-
             border
             border-slate-200
             dark:border-slate-700
-
             bg-white
             dark:bg-slate-800
-
             px-4
             py-3
-
             text-slate-900
             dark:text-white
-
             placeholder:text-slate-400
             dark:placeholder:text-slate-500
-
             outline-none
             transition-colors
-
             focus:border-yellow-400
           "
         />
 
-        {/* Description */}
+        {/* Content */}
         <textarea
           rows={5}
           placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           className="
             w-full
             rounded-xl
-
             border
             border-slate-200
             dark:border-slate-700
-
             bg-white
             dark:bg-slate-800
-
             px-4
             py-3
-
             text-slate-900
             dark:text-white
-
             placeholder:text-slate-400
             dark:placeholder:text-slate-500
-
             outline-none
             resize-none
             transition-colors
-
             focus:border-yellow-400
           "
         />
 
-        {/* Category */}
         <CategorySelect
           value={category}
           onChange={setCategory}
@@ -136,25 +126,18 @@ const CreateNoteModal = ({
           onClick={handleClose}
           className="
             rounded-xl
-
             border
             border-slate-300
             dark:border-slate-700
-
             bg-white
             dark:bg-slate-800
-
             px-5
             py-2
-
             font-medium
-
             text-slate-700
             dark:text-slate-200
-
             transition-all
             duration-200
-
             hover:border-slate-400
             dark:hover:border-slate-500
           "
@@ -164,23 +147,20 @@ const CreateNoteModal = ({
 
         <button
           onClick={handleCreate}
-          disabled={!title.trim()}
+          disabled={
+            title.trim().length < 3 ||
+            content.trim().length < 10
+          }
           className="
             rounded-xl
-
             bg-yellow-400
-
             px-5
             py-2
-
             font-medium
             text-slate-900
-
             transition-all
             duration-200
-
             hover:bg-yellow-500
-
             disabled:cursor-not-allowed
             disabled:opacity-50
           "
