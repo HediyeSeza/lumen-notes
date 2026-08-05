@@ -1,7 +1,6 @@
 import SidebarLogo from "./Logo";
 import SidebarMenu from "./Menu";
 import Labels from "./Labels";
-import UpgradeCard from "./UpgradeCard";
 import Profile from "./Profile";
 import ThemeSwitcher from "./ThemeToggle";
 
@@ -26,8 +25,8 @@ const Sidebar = ({
         border-r
         border-yellow-200
         bg-white
-        dark:bg-slate-900
         dark:border-slate-800
+        dark:bg-slate-900
       "
     >
       <SidebarLogo />
@@ -42,11 +41,11 @@ const Sidebar = ({
 
       <div className="flex-1" />
 
-      <UpgradeCard />
+      <div className=" border-slate-200 dark:border-slate-800">
+        <Profile />
 
-      <Profile />
-
-      <ThemeSwitcher />
+        <ThemeSwitcher />
+      </div>
     </aside>
   );
 };

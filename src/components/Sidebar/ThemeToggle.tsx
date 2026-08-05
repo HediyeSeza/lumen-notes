@@ -1,79 +1,106 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import SunIcon from "../../assets/icons/sun.svg";
 import MoonIcon from "../../assets/icons/moon.svg";
 
 const ThemeSwitcher = () => {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [dark]);
 
   return (
     <div className="flex justify-center px-6 pb-6">
       <button
-  className="
-    relative
-    flex
-    h-14
-    w-48
-    items-center
-    rounded-full
-    border
-    border-yellow-100
-    bg-[#FFF9E8]
-    p-1
-  "
->
+        onClick={() => setDark((prev) => !prev)}
+        className="
+          relative
+          h-12
+          w-40
+          rounded-full
+          border
+          border-yellow-200
+          bg-[#FFF9E8]
+          transition-all
+          duration-700
+          ease-in-out
+
+          dark:border-slate-700
+          dark:bg-slate-800
+        "
+      >
+        {/* Background Icons */}
+        <div className="absolute inset-0 flex items-center">
+          <div className="flex w-1/2 justify-center">
+            {dark && (
+              <img
+                src={SunIcon}
+                alt="Light"
+                className="h-5 w-5 opacity-25"
+              />
+            )}
+          </div>
+
+          <div className="flex w-1/2 justify-center">
+            {!dark && (
+              <img
+                src={MoonIcon}
+                alt="Dark"
+                className="h-5 w-5 opacity-25"
+              />
+            )}
+          </div>
+        </div>
+
         {/* Slider */}
         <div
           className={`
             absolute
-            left-1
-            top-1
-
+            inset-y-1
             flex
-            h-12
-            w-12
+            w-full
             items-center
-            justify-center
-
-            rounded-full
-            bg-[#FFF3B5]
-            shadow-sm
-
+            px-1
             transition-all
-            duration-300
-
-            ${dark ? "translate-x-[104px]" : ""}
+            duration-700
+            ease-in-out
+            ${dark ? "translate-x-[112px]" : "translate-x-0"}
           `}
         >
-          <img
-            src={dark ? MoonIcon : SunIcon}
-            alt=""
-            className="h-6 w-6"
-          />
+          <div
+            className="
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-full
+              bg-[#FFF3B5]
+              shadow-md
+              transition-all
+              duration-700
+              ease-in-out
+
+              dark:bg-slate-600
+            "
+          >
+            <img
+              src={dark ? MoonIcon : SunIcon}
+              alt="Theme"
+              className="h-5 w-5"
+            />
+          </div>
         </div>
-
-        {/* Sun */}
-<div className="flex w-1/2 justify-center">
-  <img
-    src={SunIcon}
-    className={`
-      h-6 w-6 transition-all duration-300 
-      ${dark ? "opacity-20" : "opacity-100"}
-    `}
-  />
-</div>
-
-{/* Moon */}
-<div className="flex w-1/2 justify-center">
-  <img
-    src={MoonIcon}
-    className={`
-      h-6 w-6 transition-all duration-300
-      ${dark ? "opacity-0" : "opacity-20"}
-    `}
-  />
-</div>
-                </button>
+      </button>
     </div>
   );
 };
