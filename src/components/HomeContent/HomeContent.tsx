@@ -9,6 +9,7 @@ import type { SortOption } from "../SearchBar/SortDropdown";
 
 type HomeContentProps = {
   notes: Note[];
+  loading: boolean;
   fetchNotes: () => Promise<void>;
   showToast: (
     message: string,
@@ -18,6 +19,7 @@ type HomeContentProps = {
 
 const HomeContent = ({
   notes,
+  loading,
   fetchNotes,
   showToast,
 }: HomeContentProps) => {
@@ -91,6 +93,7 @@ const HomeContent = ({
 
         <NotesGrid
           notes={filteredAndSortedNotes}
+          loading={loading}
           isSearching={searchTerm.trim().length > 0}
           fetchNotes={fetchNotes}
           showToast={showToast}

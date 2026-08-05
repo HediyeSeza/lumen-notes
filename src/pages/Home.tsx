@@ -8,6 +8,7 @@ import Toast from "../components/Toast/Toast";
 
 const Home = () => {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const [toast, setToast] = useState({
     show: false,
@@ -20,11 +21,15 @@ const Home = () => {
   });
 
   const fetchNotes = async () => {
+    setLoading(true);
+
     try {
       const data = await getNotes();
       setNotes(data);
     } catch (error) {
       console.error("Failed to fetch notes:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,6 +63,7 @@ const Home = () => {
     <>
       <HomeContent
         notes={notes}
+        loading={loading}
         fetchNotes={fetchNotes}
         showToast={showToast}
       />

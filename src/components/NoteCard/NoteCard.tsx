@@ -1,14 +1,24 @@
+import { useState } from "react";
 import {
   EyeIcon,
+  ActiveEyeIcon,
+
   EditIcon,
+  ActiveEditIcon,
+
   TrashIcon,
+  ActiveTrashIcon,
+  ActiveTrashFilledIcon,
+
   StarIcon,
-  StarFilledIcon,
+  ActiveStarIcon,
+  ActiveStarFilledIcon,
 } from "../../assets/icons";
 
 import NoteBadge from "./NoteBadge";
 
 type NoteCardProps = {
+  
   title: string;
   description: string;
   category: "Personal" | "Work" | "Ideas" | "Study";
@@ -27,6 +37,13 @@ const NoteCard = ({
   onEdit,
   onDelete,
 }: NoteCardProps) => {
+  const [hovered, setHovered] = useState<
+  "view" | "edit" | "delete" | "favorite" | null
+>(null);
+
+const [pressed, setPressed] = useState<
+  "view" | "edit" | "delete" | "favorite" | null
+>(null);
   return (
     <article
       className="
@@ -43,11 +60,14 @@ const NoteCard = ({
 
         transition-all
         duration-300
+
         hover:-translate-y-1
-        hover:shadow-md
+        
+        hover:border-yellow-400
 
         dark:border-slate-800
         dark:bg-slate-900
+        dark:hover:border-yellow-400
       "
     >
       {/* Header */}
@@ -55,29 +75,28 @@ const NoteCard = ({
         <NoteBadge label={category} />
 
         <button
-          className="
-            rounded-lg
-            p-1
-            transition-all
-            duration-200
-          "
-        >
-          <img
-            src={favorite ? StarFilledIcon : StarIcon}
-            alt="Favorite"
-            className={`
-              h-4
-              w-4
-              transition-all
-              duration-200
-              ${
-                favorite
-                  ? "opacity-100"
-                  : "opacity-60 hover:opacity-100 hover:scale-110"
-              }
-            `}
-          />
-        </button>
+  onMouseEnter={() => setHovered("favorite")}
+  onMouseLeave={() => {
+    setHovered(null);
+    setPressed(null);
+  }}
+  onMouseDown={() => setPressed("favorite")}
+  onMouseUp={() => setPressed(null)}
+>
+  <img
+    src={
+      favorite
+        ? ActiveStarFilledIcon
+        : pressed === "favorite"
+        ? ActiveStarFilledIcon
+        : hovered === "favorite"
+        ? ActiveStarIcon
+        : StarIcon
+    }
+    className="h-5 w-5"
+    alt="Favorite"
+  />
+</button>
       </div>
 
       {/* Body */}
@@ -106,36 +125,74 @@ const NoteCard = ({
           {time}
         </span>
 
-        <div className="flex items-center gap-3">
-          <button className="transition-opacity hover:opacity-70">
-            <img
-              src={EyeIcon}
-              alt="View"
-              className="h-5 w-5"
-            />
-          </button>
+        <div className="flex items-center gap-2">
+          <button
+  onMouseEnter={() => setHovered("view")}
+  onMouseLeave={() => {
+    setHovered(null);
+    setPressed(null);
+  }}
+  onMouseDown={() => setPressed("view")}
+  onMouseUp={() => setPressed(null)}
+>
+  <img
+    src={
+      pressed === "view"
+        ? ActiveEyeIcon
+        : hovered === "view"
+        ? ActiveEyeIcon
+        : EyeIcon
+    }
+    className="h-5 w-5"
+    alt="View"
+  />
+</button>
 
           <button
-            onClick={onEdit}
-            className="transition-opacity hover:opacity-70"
-          >
-            <img
-              src={EditIcon}
-              alt="Edit"
-              className="h-5 w-5"
-            />
-          </button>
+  onClick={onEdit}
+  onMouseEnter={() => setHovered("edit")}
+  onMouseLeave={() => {
+    setHovered(null);
+    setPressed(null);
+  }}
+  onMouseDown={() => setPressed("edit")}
+  onMouseUp={() => setPressed(null)}
+>
+  <img
+    src={
+      pressed === "edit"
+        ? ActiveEditIcon
+        : hovered === "edit"
+        ? ActiveEditIcon
+        : EditIcon
+    }
+    className="h-5 w-5"
+    alt="Edit"
+  />
+</button>
 
           <button
-            onClick={onDelete}
-            className="transition-opacity hover:opacity-70"
-          >
-            <img
-              src={TrashIcon}
-              alt="Delete"
-              className="h-5 w-5"
-            />
-          </button>
+  onClick={onDelete}
+  onMouseEnter={() => setHovered("delete")}
+  onMouseLeave={() => {
+    setHovered(null);
+    setPressed(null);
+  }}
+  onMouseDown={() => setPressed("delete")}
+  onMouseUp={() => setPressed(null)}
+>
+  <img
+    src={
+      pressed === "delete"
+        ? ActiveTrashFilledIcon
+        : hovered === "delete"
+        ? ActiveTrashIcon
+        : TrashIcon
+    }
+    className="h-5 w-5"
+    alt="Delete"
+  />
+</button>
         </div>
       </footer>
     </article>
