@@ -1,7 +1,11 @@
 import NoteCard from "../NoteCard/NoteCard";
-import { notes } from "../../assets/data/noteData";
+import type { Note } from "../../types/note";
 
-const NotesGrid = () => {
+type NotesGridProps = {
+  notes: Note[];
+};
+
+const NotesGrid = ({ notes }: NotesGridProps) => {
   return (
     <div
       className="
@@ -18,10 +22,10 @@ const NotesGrid = () => {
         <NoteCard
           key={note.id}
           title={note.title}
-          description={note.description}
-          category={note.category}
-          time={note.time}
-          favorite={note.favorite}
+          description={note.content}
+          category="Personal"
+          time={new Date(note.createdAt).toLocaleDateString()}
+          favorite={false}
         />
       ))}
     </div>
