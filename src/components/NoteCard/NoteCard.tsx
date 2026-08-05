@@ -15,6 +15,7 @@ type NoteCardProps = {
   time: string;
   favorite: boolean;
   onEdit: () => void;
+  onDelete: () => void;
 };
 
 const NoteCard = ({
@@ -24,6 +25,7 @@ const NoteCard = ({
   time,
   favorite,
   onEdit,
+  onDelete,
 }: NoteCardProps) => {
   return (
     <article
@@ -124,7 +126,10 @@ const NoteCard = ({
             />
           </button>
 
-          <button className="transition-opacity hover:opacity-70">
+          <button
+            onClick={onDelete}
+            className="transition-opacity hover:opacity-70"
+          >
             <img
               src={DeleteIcon}
               alt="Delete"

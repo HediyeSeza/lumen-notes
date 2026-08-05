@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import NoteCard from "../NoteCard/NoteCard";
 import EditNoteModal from "../EditNote/EditNoteModal";
+import DeleteNoteModal from "../DeleteNote/DeleteNoteModal";
 
 import type { Note } from "../../types/note";
 
@@ -14,11 +15,16 @@ const NotesGrid = ({
   notes,
   fetchNotes,
 }: NotesGridProps) => {
+  // Edit
   const [isEditOpen, setIsEditOpen] = useState(false);
+
+  // Delete
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const [selectedNote, setSelectedNote] =
     useState<Note | null>(null);
 
+  // Edit
   const handleOpenEdit = (note: Note) => {
     setSelectedNote(note);
     setIsEditOpen(true);
@@ -27,6 +33,17 @@ const NotesGrid = ({
   const handleCloseEdit = () => {
     setSelectedNote(null);
     setIsEditOpen(false);
+  };
+
+  // Delete
+  const handleOpenDelete = (note: Note) => {
+    setSelectedNote(note);
+    setIsDeleteOpen(true);
+  };
+
+  const handleCloseDelete = () => {
+    setSelectedNote(null);
+    setIsDeleteOpen(false);
   };
 
   return (
@@ -51,17 +68,27 @@ const NotesGrid = ({
             time={new Date(note.createdAt).toLocaleDateString()}
             favorite={false}
             onEdit={() => handleOpenEdit(note)}
+            onDelete={() => handleOpenDelete(note)}
           />
         ))}
       </div>
 
       {selectedNote && (
-        <EditNoteModal
-          isOpen={isEditOpen}
-          onClose={handleCloseEdit}
-          note={selectedNote}
-          fetchNotes={fetchNotes}
-        />
+        <>
+          <EditNoteModal
+            isOpen={isEditOpen}
+            onClose={handleCloseEdit}
+            note={selectedNote}
+            fetchNotes={fetchNotes}
+          />
+
+          <DeleteNoteModal
+            isOpen={isDeleteOpen}
+            onClose={handleCloseDelete}
+            note={selectedNote}
+            fetchNotes={fetchNotes}
+          />
+        </>
       )}
     </>
   );
