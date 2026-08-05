@@ -1,6 +1,14 @@
 import { SearchIcon } from "../../assets/icons";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  value: string;
+  onChange: (value: string) => void;
+};
+
+const SearchBar = ({
+  value,
+  onChange,
+}: SearchBarProps) => {
   return (
     <div className="relative w-full">
       <img
@@ -20,9 +28,12 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search notes..."
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="
           h-14
-          w-full xl:max-w-xl
+          w-full
+          xl:max-w-xl
 
           rounded-2xl
 
