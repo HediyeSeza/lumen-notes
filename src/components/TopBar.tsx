@@ -5,7 +5,14 @@ import PlusIcon from "../assets/icons/plus.svg";
 
 import CreateNoteModal from "./CreateNote/CreateNoteModal";
 
-const TopBar = () => {
+type TopBarProps = {
+  fetchNotes: () => Promise<void>;
+};
+
+const TopBar = ({
+  fetchNotes,
+  notesCount,
+}: TopBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -24,26 +31,43 @@ const TopBar = () => {
             flex
             items-center
             justify-between
-            px-4
-            py-6
+
+            px-2
+            pt-2
+            pb-2
+
             md:px-8
             lg:px-10
           "
         >
           {/* Left */}
           <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+            <h1
+              className="
+                text-3xl
+                font-bold
+                leading-tight
+                text-slate-900
+                dark:text-white
+              "
+            >
               All Notes <span className="text-yellow-400">✨</span>
             </h1>
 
-            <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
-              12 notes in total
+            <p
+              className="
+                mt-1
+                text-sm
+                text-gray-500
+                dark:text-slate-400
+              "
+            >
+              {notesCount} notes in total
             </p>
           </div>
 
           {/* Right */}
           <div className="flex items-center gap-3">
-            {/* New Note */}
             <button
               onClick={() => setIsOpen(true)}
               className="
@@ -72,7 +96,6 @@ const TopBar = () => {
               </span>
             </button>
 
-            {/* Bell */}
             <button
               className="
                 flex
@@ -105,6 +128,7 @@ const TopBar = () => {
       <CreateNoteModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
+        fetchNotes={fetchNotes}
       />
     </>
   );

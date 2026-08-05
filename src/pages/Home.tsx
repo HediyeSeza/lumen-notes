@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 import { getNotes } from "../api/notes";
 import type { Note } from "../types/note";
 
-import SearchSection from "../components/SearchBar/SearchSection";
-import NotesGrid from "../components/NotesGrid/NotesGrid";
+import HomeContent from "../components/HomeContent/HomeContent";
 
 const Home = () => {
   const [notes, setNotes] = useState<Note[]>([]);
 
-  // 👇 این تابع از useEffect جدا شده
   const fetchNotes = async () => {
     try {
       const data = await getNotes();
@@ -19,17 +17,15 @@ const Home = () => {
     }
   };
 
-  // 👇 فقط بار اول کامپوننت اجرا میشه
   useEffect(() => {
     fetchNotes();
   }, []);
 
   return (
-    <>
-      <SearchSection />
-
-      <NotesGrid notes={notes} />
-    </>
+    <HomeContent
+      notes={notes}
+      fetchNotes={fetchNotes}
+    />
   );
 };
 

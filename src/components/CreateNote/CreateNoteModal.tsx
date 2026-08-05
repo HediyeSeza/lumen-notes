@@ -8,11 +8,13 @@ import CategorySelect from "./CategorySelect";
 type CreateNoteModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  fetchNotes: () => Promise<void>;
 };
 
 const CreateNoteModal = ({
   isOpen,
   onClose,
+  fetchNotes,
 }: CreateNoteModalProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -29,20 +31,23 @@ const CreateNoteModal = ({
     onClose();
   };
 
-  const handleCreate = async () => {
-    if (title.trim().length < 3) return;
+ const handleCreate = async () => {
+  if (title.trim().length < 3) return;
 
-    if (content.trim().length < 10) return;
+  if (content.trim().length < 10) return;
 
-    try {
-      await createNote(title, content);
+  try {
+    await createNote(title, content);
 
-      resetForm();
-      onClose();
-    } catch (error) {
-      console.error("Failed to create note:", error);
-    }
-  };
+    // دوباره لیست نوت‌ها را دریافت کن
+    await fetchNotes();
+
+    // فرم را ریست کن و مودال را ببند
+    handleClose();
+  } catch (error) {
+    console.error("Failed to create note:", error);
+  }
+};
 
   return (
     <Modal
@@ -62,7 +67,6 @@ const CreateNoteModal = ({
       </h2>
 
       <div className="space-y-5">
-        {/* Title */}
         <input
           type="text"
           placeholder="Title"
@@ -88,7 +92,6 @@ const CreateNoteModal = ({
           "
         />
 
-        {/* Content */}
         <textarea
           rows={5}
           placeholder="Description"

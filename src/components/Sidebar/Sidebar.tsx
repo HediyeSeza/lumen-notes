@@ -5,7 +5,17 @@ import UpgradeCard from "./UpgradeCard";
 import Profile from "./Profile";
 import ThemeSwitcher from "./ThemeToggle";
 
-const Sidebar = () => {
+type SidebarProps = {
+  notesCount: number;
+  favoritesCount: number;
+  trashCount: number;
+};
+
+const Sidebar = ({
+  notesCount,
+  favoritesCount,
+  trashCount,
+}: SidebarProps) => {
   return (
     <aside
       className="
@@ -20,20 +30,23 @@ const Sidebar = () => {
         dark:border-slate-800
       "
     >
-       <SidebarLogo />
+      <SidebarLogo />
 
-<SidebarMenu />
+      <SidebarMenu
+        notesCount={notesCount}
+        favoritesCount={favoritesCount}
+        trashCount={trashCount}
+      />
 
-<Labels />
+      <Labels />
 
-<div className="flex-1" />
+      <div className="flex-1" />
 
-<UpgradeCard />
+      <UpgradeCard />
 
-<Profile />
+      <Profile />
 
-<ThemeSwitcher />
-    
+      <ThemeSwitcher />
     </aside>
   );
 };
