@@ -17,6 +17,8 @@ export { default as GridIcon } from "./normal/grid.svg";
 
 export { default as MenuIcon } from "./normal/menu.svg";
 
+export { default as ProfileIcon } from "./normal/Profile.svg";
+
 export { default as MoonIcon } from "./normal/moon.svg";
 export { default as MoonFilledIcon } from "./normal/moonFilled.svg";
 
@@ -52,6 +54,8 @@ export { default as ActiveFilterIcon } from "./active/filter.svg";
 export { default as ActiveGridIcon } from "./active/grid.svg";
 
 export { default as ActiveMenuIcon } from "./active/menu.svg";
+
+export { default as ActiveProfileIcon } from "./active/Profile.svg";
 
 export { default as ActiveMoonIcon } from "./active/moon.svg";
 export { default as ActiveMoonFilledIcon } from "./active/moonFilled.svg";

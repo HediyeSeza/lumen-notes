@@ -4,6 +4,7 @@ import { getNotes } from "../api/notes";
 import type { Note } from "../types/note";
 
 import HomeContent from "../components/HomeContent/HomeContent";
+import MobileHomeContent from "../components/Mobile/MobileHomeContent/MobileHomeContent";
 import Toast from "../components/Toast/Toast";
 
 const Home = () => {
@@ -56,11 +57,23 @@ const Home = () => {
 
   return (
     <>
-      <HomeContent
-        notes={notes}
-        fetchNotes={fetchNotes}
-        showToast={showToast}
-      />
+      {/* Desktop */}
+      <div className="hidden md:block">
+        <HomeContent
+          notes={notes}
+          fetchNotes={fetchNotes}
+          showToast={showToast}
+        />
+      </div>
+
+      {/* Mobile */}
+      <div className="md:hidden">
+        <MobileHomeContent
+          notes={notes}
+          fetchNotes={fetchNotes}
+          showToast={showToast}
+        />
+      </div>
 
       <Toast
         show={toast.show}
