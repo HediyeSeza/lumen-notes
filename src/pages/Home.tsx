@@ -5,10 +5,12 @@ import type { Note } from "../types/note";
 
 import HomeContent from "../components/HomeContent/HomeContent";
 import MobileHomeContent from "../components/Mobile/MobileHomeContent/MobileHomeContent";
+import Loader from "../components/Loader/Loader";
 import Toast from "../components/Toast/Toast";
 
 const Home = () => {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const [toast, setToast] = useState({
     show: false,
@@ -21,11 +23,18 @@ const Home = () => {
   });
 
   const fetchNotes = async () => {
+    setLoading(true);
+
     try {
       const data = await getNotes();
       setNotes(data);
     } catch (error) {
-      console.error("Failed to fetch notes:", error);
+      console.error(
+        "Failed to fetch notes:",
+        error
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,6 +63,10 @@ const Home = () => {
   useEffect(() => {
     fetchNotes();
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
