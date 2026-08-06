@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import NoteCard from "../NoteCard/NoteCard";
+import Loader from "../Loader/Loader";
 import EditNoteModal from "../EditNote/EditNoteModal";
 import DeleteNoteModal from "../DeleteNote/DeleteNoteModal";
 import EmptyState from "../EmptyState";
@@ -9,6 +10,7 @@ import type { Note } from "../../types/note";
 
 type NotesGridProps = {
   notes: Note[];
+  loading: boolean;
   isSearching: boolean;
   fetchNotes: () => Promise<void>;
   showToast: (
@@ -19,6 +21,7 @@ type NotesGridProps = {
 
 const NotesGrid = ({
   notes,
+  loading,
   isSearching,
   fetchNotes,
   showToast,
@@ -53,6 +56,11 @@ const NotesGrid = ({
     setSelectedNote(null);
     setIsDeleteOpen(false);
   };
+
+  // Loading
+  if (loading) {
+    return <Loader />;
+  }
 
   // Empty State
   if (notes.length === 0) {

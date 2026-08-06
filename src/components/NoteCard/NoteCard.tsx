@@ -1,9 +1,19 @@
+import { useState } from "react";
+
 import {
   EyeIcon,
+  ActiveEyeIcon,
+
   EditIcon,
+  ActiveEditIcon,
+
   TrashIcon,
+  ActiveTrashIcon,
+  ActiveTrashFilledIcon,
+
   StarIcon,
-  StarFilledIcon,
+  ActiveStarIcon,
+  ActiveStarFilledIcon,
 } from "../../assets/icons";
 
 import NoteBadge from "./NoteBadge";
@@ -27,6 +37,14 @@ const NoteCard = ({
   onEdit,
   onDelete,
 }: NoteCardProps) => {
+  const [hovered, setHovered] = useState<
+    "view" | "edit" | "delete" | "favorite" | null
+  >(null);
+
+  const [pressed, setPressed] = useState<
+    "edit" | "delete" | null
+  >(null);
+
   return (
     <article
       className="
@@ -37,17 +55,21 @@ const NoteCard = ({
         rounded-2xl
         border
         border-slate-200
+
         bg-white
         p-5
         shadow-sm
 
         transition-all
         duration-300
+
         hover:-translate-y-1
+        hover:border-yellow-400
         hover:shadow-md
 
         dark:border-slate-800
         dark:bg-slate-900
+        dark:hover:border-yellow-400
       "
     >
       {/* Header */}
@@ -55,6 +77,12 @@ const NoteCard = ({
         <NoteBadge label={category} />
 
         <button
+          onMouseEnter={() =>
+            setHovered("favorite")
+          }
+          onMouseLeave={() =>
+            setHovered(null)
+          }
           className="
             rounded-lg
             p-1
@@ -63,26 +91,30 @@ const NoteCard = ({
           "
         >
           <img
-            src={favorite ? StarFilledIcon : StarIcon}
+            src={
+              favorite
+                ? ActiveStarFilledIcon
+                : hovered === "favorite"
+                  ? ActiveStarIcon
+                  : StarIcon
+            }
             alt="Favorite"
-            className={`
-              h-4
-              w-4
-              transition-all
-              duration-200
-              ${
-                favorite
-                  ? "opacity-100"
-                  : "opacity-60 hover:opacity-100 hover:scale-110"
-              }
-            `}
+            className="h-5 w-5"
           />
         </button>
       </div>
 
       {/* Body */}
       <div className="flex-1">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+        <h3
+          className="
+            text-lg
+            font-bold
+            text-slate-900
+
+            dark:text-white
+          "
+        >
           {title}
         </h3>
 
@@ -90,9 +122,12 @@ const NoteCard = ({
           className="
             mt-2
             line-clamp-3
+
             text-sm
             leading-6
+
             text-slate-500
+
             dark:text-slate-400
           "
         >
@@ -107,31 +142,94 @@ const NoteCard = ({
         </span>
 
         <div className="flex items-center gap-3">
-          <button className="transition-opacity hover:opacity-70">
+
+          {/* View */}
+          <button
+            onMouseEnter={() =>
+              setHovered("view")
+            }
+            onMouseLeave={() =>
+              setHovered(null)
+            }
+            className="
+              transition-all
+              duration-200
+            "
+          >
             <img
-              src={EyeIcon}
+              src={
+                hovered === "view"
+                  ? ActiveEyeIcon
+                  : EyeIcon
+              }
               alt="View"
               className="h-5 w-5"
             />
           </button>
 
+          {/* Edit */}
           <button
             onClick={onEdit}
-            className="transition-opacity hover:opacity-70"
+            onMouseEnter={() =>
+              setHovered("edit")
+            }
+            onMouseLeave={() => {
+              setHovered(null);
+              setPressed(null);
+            }}
+            onMouseDown={() =>
+              setPressed("edit")
+            }
+            onMouseUp={() =>
+              setPressed(null)
+            }
+            className="
+              transition-all
+              duration-200
+            "
           >
             <img
-              src={EditIcon}
+              src={
+                pressed === "edit"
+                  ? ActiveEditIcon
+                  : hovered === "edit"
+                    ? ActiveEditIcon
+                    : EditIcon
+              }
               alt="Edit"
               className="h-5 w-5"
             />
           </button>
 
+          {/* Delete */}
           <button
             onClick={onDelete}
-            className="transition-opacity hover:opacity-70"
+            onMouseEnter={() =>
+              setHovered("delete")
+            }
+            onMouseLeave={() => {
+              setHovered(null);
+              setPressed(null);
+            }}
+            onMouseDown={() =>
+              setPressed("delete")
+            }
+            onMouseUp={() =>
+              setPressed(null)
+            }
+            className="
+              transition-all
+              duration-200
+            "
           >
             <img
-              src={TrashIcon}
+              src={
+                pressed === "delete"
+                  ? ActiveTrashFilledIcon
+                  : hovered === "delete"
+                    ? ActiveTrashIcon
+                    : TrashIcon
+              }
               alt="Delete"
               className="h-5 w-5"
             />
