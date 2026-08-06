@@ -4,6 +4,8 @@ import { getNotes } from "../api/notes";
 import type { Note } from "../types/note";
 
 import HomeContent from "../components/HomeContent/HomeContent";
+import MobileHomeContent from "../components/Mobile/MobileHomeContent/MobileHomeContent";
+import Loader from "../components/Loader/Loader";
 import Toast from "../components/Toast/Toast";
 
 const Home = () => {
@@ -27,7 +29,10 @@ const Home = () => {
       const data = await getNotes();
       setNotes(data);
     } catch (error) {
-      console.error("Failed to fetch notes:", error);
+      console.error(
+        "Failed to fetch notes:",
+        error
+      );
     } finally {
       setLoading(false);
     }
@@ -59,14 +64,29 @@ const Home = () => {
     fetchNotes();
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      <HomeContent
-        notes={notes}
-        loading={loading}
-        fetchNotes={fetchNotes}
-        showToast={showToast}
-      />
+      {/* Desktop */}
+      <div className="hidden md:block">
+        <HomeContent
+          notes={notes}
+          fetchNotes={fetchNotes}
+          showToast={showToast}
+        />
+      </div>
+
+      {/* Mobile */}
+      <div className="md:hidden">
+        <MobileHomeContent
+          notes={notes}
+          fetchNotes={fetchNotes}
+          showToast={showToast}
+        />
+      </div>
 
       <Toast
         show={toast.show}
