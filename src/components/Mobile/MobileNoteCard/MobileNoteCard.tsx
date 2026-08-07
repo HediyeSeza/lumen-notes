@@ -75,8 +75,7 @@ const MobileNoteCard = ({
             text-xs
             font-medium
             text-yellow-700
-
-           bg-yellow-100 text-yellow-700
+           bg-yellow-100
           "
         >
           {category}

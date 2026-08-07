@@ -55,7 +55,7 @@ export { default as ActiveBellFilledIcon } from "./active/bellFilled.svg";
 
 export { default as ActiveNoTextIcon } from "./active/note-remove.svg";
 
-export { default as ActiveLabelIcon } from "./active/Label.svg";
+export { default as ActiveLabelIcon } from "./active/label.svg";
 
 export { default as ActiveEditIcon } from "./active/edit.svg";
 
