@@ -77,12 +77,8 @@ const NoteCard = ({
         <NoteBadge label={category} />
 
         <button
-          onMouseEnter={() =>
-            setHovered("favorite")
-          }
-          onMouseLeave={() =>
-            setHovered(null)
-          }
+          onMouseEnter={() => setHovered("favorite")}
+          onMouseLeave={() => setHovered(null)}
           className="
             rounded-lg
             p-1
@@ -95,11 +91,11 @@ const NoteCard = ({
               favorite
                 ? ActiveStarFilledIcon
                 : hovered === "favorite"
-                  ? ActiveStarIcon
-                  : StarIcon
+                ? ActiveStarIcon
+                : StarIcon
             }
             alt="Favorite"
-            className="h-5 w-5"
+            className="h-4 w-4 transition-all duration-200"
           />
         </button>
       </div>
@@ -111,7 +107,6 @@ const NoteCard = ({
             text-lg
             font-bold
             text-slate-900
-
             dark:text-white
           "
         >
@@ -127,7 +122,6 @@ const NoteCard = ({
             leading-6
 
             text-slate-500
-
             dark:text-slate-400
           "
         >
@@ -142,15 +136,9 @@ const NoteCard = ({
         </span>
 
         <div className="flex items-center gap-3">
-
-          {/* View */}
           <button
-            onMouseEnter={() =>
-              setHovered("view")
-            }
-            onMouseLeave={() =>
-              setHovered(null)
-            }
+            onMouseEnter={() => setHovered("view")}
+            onMouseLeave={() => setHovered(null)}
             className="
               transition-all
               duration-200
@@ -163,27 +151,22 @@ const NoteCard = ({
                   : EyeIcon
               }
               alt="View"
-              className="h-5 w-5"
+              className="h-5 w-5 transition-all duration-200"
             />
           </button>
 
-          {/* Edit */}
           <button
             onClick={onEdit}
-            onMouseEnter={() =>
-              setHovered("edit")
-            }
+            onMouseEnter={() => setHovered("edit")}
             onMouseLeave={() => {
               setHovered(null);
               setPressed(null);
             }}
-            onMouseDown={() =>
-              setPressed("edit")
-            }
-            onMouseUp={() =>
-              setPressed(null)
-            }
+            onMouseDown={() => setPressed("edit")}
+            onMouseUp={() => setPressed(null)}
             className="
+              rounded-lg
+              p-1
               transition-all
               duration-200
             "
@@ -193,31 +176,26 @@ const NoteCard = ({
                 pressed === "edit"
                   ? ActiveEditIcon
                   : hovered === "edit"
-                    ? ActiveEditIcon
-                    : EditIcon
+                  ? ActiveEditIcon
+                  : EditIcon
               }
               alt="Edit"
-              className="h-5 w-5"
+              className="h-5 w-5 transition-all duration-200"
             />
           </button>
 
-          {/* Delete */}
           <button
             onClick={onDelete}
-            onMouseEnter={() =>
-              setHovered("delete")
-            }
+            onMouseEnter={() => setHovered("delete")}
             onMouseLeave={() => {
               setHovered(null);
               setPressed(null);
             }}
-            onMouseDown={() =>
-              setPressed("delete")
-            }
-            onMouseUp={() =>
-              setPressed(null)
-            }
+            onMouseDown={() => setPressed("delete")}
+            onMouseUp={() => setPressed(null)}
             className="
+              rounded-lg
+              p-1
               transition-all
               duration-200
             "
@@ -227,11 +205,11 @@ const NoteCard = ({
                 pressed === "delete"
                   ? ActiveTrashFilledIcon
                   : hovered === "delete"
-                    ? ActiveTrashIcon
-                    : TrashIcon
+                  ? ActiveTrashIcon
+                  : TrashIcon
               }
               alt="Delete"
-              className="h-5 w-5"
+              className="h-5 w-5 transition-all duration-200"
             />
           </button>
         </div>
