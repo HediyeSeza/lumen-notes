@@ -16,15 +16,19 @@ const SortDropdown = ({
   onChange,
 }: SortDropdownProps) => {
   return (
-    <div className="relative">
+    <div className="relative w-52">
       <select
         value={value}
         onChange={(e) =>
-          onChange(e.target.value as SortOption)
+          onChange(
+            e.target.value as SortOption
+          )
         }
         className="
           h-14
           w-full
+
+          cursor-pointer
 
           appearance-none
 

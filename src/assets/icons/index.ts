@@ -4,6 +4,11 @@
 export { default as BellIcon } from "./normal/bell.svg";
 export { default as BellFilledIcon } from "./normal/bellFilled.svg";
 
+export { default as NoTextIcon } from "./normal/note-remove.svg";
+
+export { default as LabelIcon } from "./normal/Label.svg";
+
+
 export { default as ChevronDownIcon } from "./normal/chevron-down.svg";
 
 export { default as EditIcon } from "./normal/edit.svg";
@@ -47,6 +52,10 @@ export { default as TrashFilledIcon } from "./normal/trashFilled.svg";
 
 export { default as ActiveBellIcon } from "./active/bell.svg";
 export { default as ActiveBellFilledIcon } from "./active/bellFilled.svg";
+
+export { default as ActiveNoTextIcon } from "./active/note-remove.svg";
+
+export { default as ActiveLabelIcon } from "./active/Label.svg";
 
 export { default as ActiveEditIcon } from "./active/edit.svg";
 

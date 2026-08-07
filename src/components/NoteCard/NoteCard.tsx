@@ -136,6 +136,7 @@ const NoteCard = ({
         </span>
 
         <div className="flex items-center gap-3">
+          {/* View */}
           <button
             onMouseEnter={() => setHovered("view")}
             onMouseLeave={() => setHovered(null)}
@@ -155,6 +156,7 @@ const NoteCard = ({
             />
           </button>
 
+          {/* Edit */}
           <button
             onClick={onEdit}
             onMouseEnter={() => setHovered("edit")}
@@ -165,8 +167,11 @@ const NoteCard = ({
             onMouseDown={() => setPressed("edit")}
             onMouseUp={() => setPressed(null)}
             className="
+              cursor-pointer
+
               rounded-lg
               p-1
+
               transition-all
               duration-200
             "
@@ -184,6 +189,7 @@ const NoteCard = ({
             />
           </button>
 
+          {/* Delete */}
           <button
             onClick={onDelete}
             onMouseEnter={() => setHovered("delete")}
@@ -194,8 +200,11 @@ const NoteCard = ({
             onMouseDown={() => setPressed("delete")}
             onMouseUp={() => setPressed(null)}
             className="
+              cursor-pointer
+
               rounded-lg
               p-1
+
               transition-all
               duration-200
             "

@@ -1,3 +1,5 @@
+import { NoTextIcon } from "../../assets/icons";
+
 type EmptyStateProps = {
   title: string;
   description: string;
@@ -15,25 +17,54 @@ const EmptyState = ({
         flex-col
         items-center
         justify-center
+
         rounded-3xl
         border
         border-dashed
         border-slate-300
+
         bg-white
         py-20
+
         text-center
 
         dark:border-slate-700
         dark:bg-slate-900
       "
     >
-      <div className="text-6xl">📝</div>
+      <img
+        src={NoTextIcon}
+        alt="No Notes"
+        className="
+          h-20
+          w-20
 
-      <h2 className="mt-6 text-2xl font-bold text-slate-900 dark:text-white">
+          select-none
+        "
+      />
+
+      <h2
+        className="
+          mt-6
+          text-2xl
+          font-bold
+
+          text-slate-900
+          dark:text-white
+        "
+      >
         {title}
       </h2>
 
-      <p className="mt-2 max-w-md text-slate-500 dark:text-slate-400">
+      <p
+        className="
+          mt-2
+          max-w-md
+
+          text-slate-500
+          dark:text-slate-400
+        "
+      >
         {description}
       </p>
     </div>

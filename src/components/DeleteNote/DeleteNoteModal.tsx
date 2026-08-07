@@ -48,19 +48,8 @@ const DeleteNoteModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      title="Delete Note"
     >
-      <h2
-        className="
-          mb-4
-          text-2xl
-          font-bold
-          text-slate-900
-          dark:text-white
-        "
-      >
-        Delete Note
-      </h2>
-
       <p
         className="
           mb-8
@@ -81,19 +70,26 @@ const DeleteNoteModal = ({
         <button
           onClick={onClose}
           className="
+            cursor-pointer
+
             rounded-xl
             border
             border-slate-300
-            dark:border-slate-700
+
             bg-white
-            dark:bg-slate-800
             px-5
             py-2
+
             font-medium
             text-slate-700
-            dark:text-slate-200
+
             transition-all
+
             hover:border-slate-400
+
+            dark:border-slate-700
+            dark:bg-slate-800
+            dark:text-slate-200
           "
         >
           Cancel
@@ -102,13 +98,18 @@ const DeleteNoteModal = ({
         <button
           onClick={handleDelete}
           className="
+            cursor-pointer
+
             rounded-xl
-            bg-red-500
+
             px-5
             py-2
+
             font-medium
             text-white
+
             transition-all
+
             hover:bg-red-600
           "
         >
