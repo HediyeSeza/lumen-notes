@@ -44,7 +44,7 @@ const Home = () => {
       | "success"
       | "error"
       | "warning"
-      | "info" = "success"
+      | "info" = "success",
   ) => {
     setToast({
       show: true,
@@ -74,6 +74,7 @@ const Home = () => {
       <div className="hidden md:block">
         <HomeContent
           notes={notes}
+          loading={loading}
           fetchNotes={fetchNotes}
           showToast={showToast}
         />
