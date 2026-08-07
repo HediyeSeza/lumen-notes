@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import TopBar from "../TopBar";
 import SearchSection from "../SearchBar/SearchSection";
 import NotesGrid from "../NotesGrid/NotesGrid";
+import Sidebar from "../Sidebar/Sidebar";
 
 import type { Note } from "../../types/note";
 import type { SortOption } from "../SearchBar/SortDropdown";
@@ -24,6 +25,7 @@ const HomeContent = ({
   showToast,
 }: HomeContentProps) => {
   const [searchTerm, setSearchTerm] = useState("");
+
   const [sortBy, setSortBy] =
     useState<SortOption>("newest");
 
@@ -76,30 +78,38 @@ const HomeContent = ({
   }, [notes, searchTerm, sortBy]);
 
   return (
-    <>
-      <TopBar
-        fetchNotes={fetchNotes}
+    <div className="flex min-h-screen">
+      <Sidebar
         notesCount={filteredAndSortedNotes.length}
-        showToast={showToast}
+        favoritesCount={0}
+        trashCount={0}
       />
 
-      <div className="px-6 py-8 lg:px-10">
-        <SearchSection
-          searchValue={searchTerm}
-          onSearchChange={setSearchTerm}
-          sortValue={sortBy}
-          onSortChange={setSortBy}
-        />
-
-        <NotesGrid
-          notes={filteredAndSortedNotes}
-          loading={loading}
-          isSearching={searchTerm.trim().length > 0}
+      <div className="flex-1">
+        <TopBar
           fetchNotes={fetchNotes}
+          notesCount={filteredAndSortedNotes.length}
           showToast={showToast}
         />
+
+        <div className="px-6 py-8 lg:px-10">
+          <SearchSection
+            searchValue={searchTerm}
+            onSearchChange={setSearchTerm}
+            sortValue={sortBy}
+            onSortChange={setSortBy}
+          />
+
+          <NotesGrid
+            notes={filteredAndSortedNotes}
+            loading={loading}
+            isSearching={searchTerm.trim().length > 0}
+            fetchNotes={fetchNotes}
+            showToast={showToast}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
