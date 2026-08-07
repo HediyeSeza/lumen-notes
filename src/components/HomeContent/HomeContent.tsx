@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import TopBar from "../TopBar";
 import SearchSection from "../SearchBar/SearchSection";
 import NotesGrid from "../NotesGrid/NotesGrid";
 import Sidebar from "../Sidebar/Sidebar";
+import Pagination from "../Pagination";
 
 import type { Note } from "../../types/note";
 import type { SortOption } from "../SearchBar/SortDropdown";
@@ -18,16 +19,22 @@ type HomeContentProps = {
   ) => void;
 };
 
+const NOTES_PER_PAGE = 9;
+
 const HomeContent = ({
   notes,
   loading,
   fetchNotes,
   showToast,
 }: HomeContentProps) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] =
+    useState("");
 
   const [sortBy, setSortBy] =
     useState<SortOption>("newest");
+
+  const [currentPage, setCurrentPage] =
+    useState(1);
 
   const filteredAndSortedNotes = useMemo(() => {
     const keyword = searchTerm
@@ -77,6 +84,21 @@ const HomeContent = ({
     return result;
   }, [notes, searchTerm, sortBy]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, sortBy]);
+
+  const totalPages = Math.ceil(
+    filteredAndSortedNotes.length /
+      NOTES_PER_PAGE
+  );
+
+  const currentNotes =
+    filteredAndSortedNotes.slice(
+      (currentPage - 1) * NOTES_PER_PAGE,
+      currentPage * NOTES_PER_PAGE
+    );
+
   return (
     <div className="flex min-h-screen">
       <Sidebar
@@ -85,29 +107,52 @@ const HomeContent = ({
         trashCount={0}
       />
 
-      <div className="flex-1">
+      <div className="flex min-h-screen flex-1 flex-col">
         <TopBar
           fetchNotes={fetchNotes}
-          notesCount={filteredAndSortedNotes.length}
+          notesCount={
+            filteredAndSortedNotes.length
+          }
           showToast={showToast}
         />
 
-        <div className="px-6 py-8 lg:px-10">
-          <SearchSection
-            searchValue={searchTerm}
-            onSearchChange={setSearchTerm}
-            sortValue={sortBy}
-            onSortChange={setSortBy}
-          />
+        <div
+  className="
+    flex
+    min-h-[calc(100vh-88px)]
+    flex-col
+    px-6
+    py-8
+    lg:px-10
+  "
+>
+  <SearchSection
+    searchValue={searchTerm}
+    onSearchChange={setSearchTerm}
+    sortValue={sortBy}
+    onSortChange={setSortBy}
+  />
 
-          <NotesGrid
-            notes={filteredAndSortedNotes}
-            loading={loading}
-            isSearching={searchTerm.trim().length > 0}
-            fetchNotes={fetchNotes}
-            showToast={showToast}
-          />
-        </div>
+  <div className="flex-1">
+    <NotesGrid
+      notes={currentNotes}
+      loading={loading}
+      isSearching={
+        searchTerm.trim().length > 0
+      }
+      fetchNotes={fetchNotes}
+      showToast={showToast}
+    />
+  </div>
+
+  <div className="mt-auto pt-8">
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={setCurrentPage}
+    />
+  </div>
+</div>
       </div>
     </div>
   );

@@ -18,13 +18,21 @@ const Sidebar = ({
   return (
     <aside
       className="
-        hidden
-        lg:flex
-        w-[290px]
+        sticky
+        top-0
+
+        h-screen
+        w-80
+        shrink-0
+
+        flex
         flex-col
+
         border-r
-        border-yellow-200
+        border-slate-200
+
         bg-white
+
         dark:border-slate-800
         dark:bg-slate-900
       "
@@ -41,10 +49,12 @@ const Sidebar = ({
 
       <div className="flex-1" />
 
-      <div className=" border-slate-200 dark:border-slate-800">
+      <div className="px-6 pb-6">
         <Profile />
 
-        <ThemeSwitcher />
+        <div className="mt-6">
+          <ThemeSwitcher />
+        </div>
       </div>
     </aside>
   );
