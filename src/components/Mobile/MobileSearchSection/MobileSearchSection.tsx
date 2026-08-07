@@ -162,9 +162,7 @@ const MobileSearchSection = ({
             "
           >
             All Notes{" "}
-            <span className="text-yellow-400">
-              ✨
-            </span>
+            
           </h2>
 
           <p

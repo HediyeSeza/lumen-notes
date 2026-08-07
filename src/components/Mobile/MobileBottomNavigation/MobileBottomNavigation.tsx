@@ -4,7 +4,7 @@ import {
   StarIcon,
  
 
-  FilterIcon,
+  LabelIcon,
   
 
   ProfileIcon,
@@ -104,7 +104,7 @@ const MobileBottomNavigation = () => {
         "
       >
         <img
-          src={FilterIcon}
+          src={LabelIcon}
           alt="Labels"
           className="h-6 w-6"
         />

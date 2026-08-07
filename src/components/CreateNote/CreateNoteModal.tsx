@@ -23,7 +23,8 @@ const CreateNoteModal = ({
 }: CreateNoteModalProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("Personal");
+  const [category, setCategory] =
+    useState("Personal");
 
   const resetForm = () => {
     setTitle("");
@@ -53,7 +54,10 @@ const CreateNoteModal = ({
 
       handleClose();
     } catch (error) {
-      console.error("Failed to create note:", error);
+      console.error(
+        "Failed to create note:",
+        error
+      );
 
       showToast(
         "Failed to create note",
@@ -66,42 +70,39 @@ const CreateNoteModal = ({
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
+      title="Create Note"
     >
-      <h2
-        className="
-          mb-6
-          text-2xl
-          font-bold
-          text-slate-900
-          dark:text-white
-        "
-      >
-        Create Note
-      </h2>
-
       <div className="space-y-5">
         <input
           type="text"
           placeholder="Title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) =>
+            setTitle(e.target.value)
+          }
           className="
             w-full
             rounded-xl
             border
             border-slate-200
-            dark:border-slate-700
+
             bg-white
-            dark:bg-slate-800
+
             px-4
             py-3
+
             text-slate-900
-            dark:text-white
             placeholder:text-slate-400
-            dark:placeholder:text-slate-500
+
             outline-none
             transition-colors
+
             focus:border-yellow-400
+
+            dark:border-slate-700
+            dark:bg-slate-800
+            dark:text-white
+            dark:placeholder:text-slate-500
           "
         />
 
@@ -109,25 +110,33 @@ const CreateNoteModal = ({
           rows={5}
           placeholder="Description"
           value={content}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) =>
+            setContent(e.target.value)
+          }
           className="
             w-full
+            resize-none
             rounded-xl
             border
             border-slate-200
-            dark:border-slate-700
+
             bg-white
-            dark:bg-slate-800
+
             px-4
             py-3
+
             text-slate-900
-            dark:text-white
             placeholder:text-slate-400
-            dark:placeholder:text-slate-500
+
             outline-none
-            resize-none
             transition-colors
+
             focus:border-yellow-400
+
+            dark:border-slate-700
+            dark:bg-slate-800
+            dark:text-white
+            dark:placeholder:text-slate-500
           "
         />
 
@@ -141,20 +150,28 @@ const CreateNoteModal = ({
         <button
           onClick={handleClose}
           className="
+            cursor-pointer
+
             rounded-xl
             border
             border-slate-300
-            dark:border-slate-700
+
             bg-white
-            dark:bg-slate-800
+
             px-5
             py-2
+
             font-medium
             text-slate-700
-            dark:text-slate-200
+
             transition-all
             duration-200
+
             hover:border-slate-400
+
+            dark:border-slate-700
+            dark:bg-slate-800
+            dark:text-slate-200
             dark:hover:border-slate-500
           "
         >
@@ -168,15 +185,23 @@ const CreateNoteModal = ({
             content.trim().length < 10
           }
           className="
+            cursor-pointer
+
             rounded-xl
+
             bg-yellow-400
+
             px-5
             py-2
+
             font-medium
             text-slate-900
+
             transition-all
             duration-200
+
             hover:bg-yellow-500
+
             disabled:cursor-not-allowed
             disabled:opacity-50
           "

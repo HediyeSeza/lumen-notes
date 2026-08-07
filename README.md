@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✨ Lumen Notes
+#  Lumen Notes
 Light up your ideas
 
 <img src="./public/Star.png" width="90" />

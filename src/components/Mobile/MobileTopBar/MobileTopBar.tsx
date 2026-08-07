@@ -12,7 +12,7 @@ const MobileTopBar = () => {
     <header
       className="
         bg-[#FFFDF5]
-        dark:bg-slate-950
+        dark:bg-slate-900
 
         px-6
         pt-12
@@ -22,9 +22,7 @@ const MobileTopBar = () => {
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <span className="text-3xl leading-none">
-            ✨
-          </span>
+         
 
           <h1
             className="

@@ -8,15 +8,14 @@ import MobileBottomNavigation from "../MobileBottomNavigation/MobileBottomNaviga
 
 import EditNoteModal from "../../EditNote/EditNoteModal";
 import DeleteNoteModal from "../../DeleteNote/DeleteNoteModal";
+import EmptyState from "../../EmptyState/EmptyState";
 
 import type { Note } from "../../../types/note";
 import type { SortOption } from "../../SearchBar/SortDropdown";
 
 type MobileHomeContentProps = {
   notes: Note[];
-
   fetchNotes: () => Promise<void>;
-
   showToast: (
     message: string,
     type?: "success" | "error" | "warning" | "info"
@@ -28,7 +27,8 @@ const MobileHomeContent = ({
   fetchNotes,
   showToast,
 }: MobileHomeContentProps) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] =
+    useState("");
 
   const [sortBy, setSortBy] =
     useState<SortOption>("newest");
@@ -107,7 +107,7 @@ const MobileHomeContent = ({
         bg-[#FFFDF5]
         pb-28
 
-        dark:bg-slate-950
+        dark:bg-slate-900
       "
     >
       <MobileTopBar />
@@ -120,23 +120,34 @@ const MobileHomeContent = ({
         onSortChange={setSortBy}
       />
 
-      <main className="space-y-4 px-4 py-6">
-        {filteredNotes.map((note) => (
-          <MobileNoteCard
-            key={note.id}
-            title={note.title}
-            description={note.content}
-            category="Personal"
-            time={new Date(
-              note.createdAt
-            ).toLocaleDateString()}
-            favorite={false}
-            onEdit={() => handleEdit(note)}
-            onDelete={() =>
-              handleDelete(note)
-            }
+      <main className="px-4 py-6">
+        {filteredNotes.length === 0 ? (
+          <EmptyState
+            title="No notes yet"
+            description="Create your first note to start organizing your ideas."
           />
-        ))}
+        ) : (
+          <div className="space-y-4">
+            {filteredNotes.map((note) => (
+              <MobileNoteCard
+                key={note.id}
+                title={note.title}
+                description={note.content}
+                category="Personal"
+                time={new Date(
+                  note.createdAt
+                ).toLocaleDateString()}
+                favorite={false}
+                onEdit={() =>
+                  handleEdit(note)
+                }
+                onDelete={() =>
+                  handleDelete(note)
+                }
+              />
+            ))}
+          </div>
+        )}
       </main>
 
       <FloatingActionButton
@@ -159,12 +170,14 @@ const MobileHomeContent = ({
           />
 
           <DeleteNoteModal
-  isOpen={isDeleteOpen}
-  onClose={() => setIsDeleteOpen(false)}
-  note={selectedNote}
-  fetchNotes={fetchNotes}
-  showToast={showToast}
-/>
+            isOpen={isDeleteOpen}
+            onClose={() =>
+              setIsDeleteOpen(false)
+            }
+            note={selectedNote}
+            fetchNotes={fetchNotes}
+            showToast={showToast}
+          />
         </>
       )}
     </div>
