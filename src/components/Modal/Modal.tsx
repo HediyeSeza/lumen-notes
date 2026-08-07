@@ -3,12 +3,14 @@ import type { ReactNode } from "react";
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  title?: string;
   children: ReactNode;
 };
 
 const Modal = ({
   isOpen,
   onClose,
+  title,
   children,
 }: ModalProps) => {
   if (!isOpen) return null;
@@ -20,6 +22,7 @@ const Modal = ({
         fixed
         inset-0
         z-50
+
         flex
         items-center
         justify-center
@@ -53,6 +56,22 @@ const Modal = ({
           duration-300
         "
       >
+        {title && (
+          <h2
+            className="
+              mb-6
+
+              text-2xl
+              font-bold
+
+              text-slate-900
+              dark:text-white
+            "
+          >
+            {title}
+          </h2>
+        )}
+
         {children}
       </div>
     </div>
